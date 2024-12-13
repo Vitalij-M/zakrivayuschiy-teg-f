@@ -20,7 +20,7 @@
   background-image: var(--page-bg-image);
   background-size: cover;
   background-attachment: fixed;
-  font-family: var(--main-font-family), sans-serif;
+  font-family: var(--main-font-family, sans-serif);
   font-variation-settings: "wght" var(--card-text-font-weight, 400);
 }
 
@@ -35,23 +35,13 @@
   background-color: var(--page-bg-color, #fff);
 }
 
-@media (width <= 375px) {
-  .section_size {
-      inline-size: 100%;
-  }
-
-  .button_save {
-      flex-direction: column;
-  }
-}
-
 .title_section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  font-family: var(--accent-font-family), fantasy;
+  font-family: var(--accent-font-family, fantasy);
   margin-block: clamp(7.5rem, 7.324rem + 0.751vw, 8rem);
 }
 
@@ -86,13 +76,14 @@
 .label__card-image {
   position: absolute;
   z-index: 1;
-  font-family: var(--accent-font-family), fantasy;
+  font-family: var(--accent-font-family, fantasy);
   font-size: 14px;
   font-weight: 400;
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  inset-block-start: 22px;
-  inset-inline-end: 11px;
+  inset-block-start: 25px;
+  inset-inline-end: 25px;
+  text-shadow: 0 0 1px var(--page-bg-color, #fff);
 }
 
 @supports ((text-stroke: 1px #ffffff) or (-webkit-text-stroke: 1px #ffffff)) {
@@ -178,7 +169,6 @@
 }
 
 .button_icon {
-  block-size: 22px;
   inline-size: 22px;
 }
 
@@ -200,15 +190,17 @@
   transform-origin: left center;
 }
 
-.modal {
-  position: fixed;
+.modal[open] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: clamp(341px, 90%, 357px);
   border: 2px solid var(--border-color, #000);
   background-color: var(--page-bg-color, #fff);
   padding: 30px;
 }
 
-.modal::backdrop {
+.modal[open]::backdrop {
   background-color: #000;
   filter: opacity(0.75);
 }
@@ -302,4 +294,27 @@
 
 .filter_blur {
   filter: blur(0.3rem);
+}
+
+@media (width <= 375px) {
+  .section_size {
+      inline-size: 100%;
+  }
+
+  .label__card-image {
+    inset-block-start: 22px;
+    inset-inline-end: 11px;
+  }
+
+  .button_save {
+      flex-direction: column;
+  }
+
+  .button_icon {
+    inline-size: 28px;
+  }
+
+  .modal {
+    padding-inline: 42px;
+  }
 }
