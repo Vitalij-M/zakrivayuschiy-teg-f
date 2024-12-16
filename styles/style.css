@@ -83,14 +83,16 @@
   mix-blend-mode: hard-light;
   inset-block-start: 25px;
   inset-inline-end: 25px;
-  text-shadow: 0 0 1px var(--page-bg-color, #fff);
+  text-shadow: -1px 0 var(--page-bg-color, #fff),
+    0 1px var(--page-bg-color, #fff), 1px 0 var(--page-bg-color, #fff),
+    0 -1px var(--page-bg-color, #fff);
 }
 
 @supports ((text-stroke: 1px #ffffff) or (-webkit-text-stroke: 1px #ffffff)) {
   .label__card-image {
-      -webkit-text-stroke: 1px #ffffff;
-      text-stroke: 1px #ffffff;
-      text-shadow: none;
+    -webkit-text-stroke: 1px #ffffff;
+    text-stroke: 1px #ffffff;
+    text-shadow: none;
   }
 }
 
@@ -157,7 +159,7 @@
 .saving_section {
   display: flex;
   justify-content: center;
-  padding-block: 50px 105px;
+  padding-block-end: 103px;
 }
 
 .button_save {
@@ -298,7 +300,7 @@
 
 @media (width <= 375px) {
   .section_size {
-      inline-size: 100%;
+    inline-size: 100%;
   }
 
   .label__card-image {
@@ -307,14 +309,14 @@
   }
 
   .button_save {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .button_icon {
     inline-size: 28px;
   }
 
-  .modal {
+  .modal[open] {
     padding-inline: 42px;
   }
 }
